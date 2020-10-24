@@ -6,9 +6,11 @@ import javax.persistence.*;
  * Created by jt on 6/13/17.
  */
 
+@Entity
 public class Recipe {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
@@ -18,9 +20,10 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-
+     
+    @Lob
     private Byte[] image;
-
+    @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
     public Long getId() {
