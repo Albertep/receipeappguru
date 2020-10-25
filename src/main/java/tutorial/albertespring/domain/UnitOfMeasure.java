@@ -2,6 +2,7 @@ package tutorial.albertespring.domain;
 
 import javax.persistence.*;
 
+@Entity
 public class UnitOfMeasure {
 
     @Id
