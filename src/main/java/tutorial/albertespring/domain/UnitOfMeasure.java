@@ -5,12 +5,12 @@ import javax.persistence.*;
 public class UnitOfMeasure {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String uom;
 
-    @OneToOne()
+    @OneToOne(fetch = FetchType.EAGER)
     private Ingredient ingredient;
 
     public long getId() {
