@@ -3,25 +3,24 @@ package tutorial.albertespring.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tutorial.albertespring.services.RecipeService;
 
-
 @Slf4j
 @Controller
-public class IndexController {
-
+public class RecipeController {
     private final RecipeService recipeService;
 
-    public IndexController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping({"", "/", "/index"})
-    public String getIndexPage(Model model){
-        log.debug("Esto es lo que pasa si haces un debub en Index");
-        model.addAttribute("recipes",recipeService.getRecipes());
-        return "index";
-    }
+    @RequestMapping("/recipe/show/{id}")
+    public String findById(@PathVariable String id, Model model){
 
+        model.addAttribute("recipe",recipeService.findById(new Long(id)));
+        return "recipes/show";
+
+    }
 }
